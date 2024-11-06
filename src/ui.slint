@@ -1,0 +1,44 @@
+import {VerticalBox, HorizontalBox, ListView, Button} from "std-widgets.slint";
+
+export component Ui inherits Window {
+    title: "Wayland Video Capturer";
+    background: black;
+    min-width: 480px;
+    min-height: 270px;
+
+    property <bool> controls_visible: true;
+    property <bool> launched: false;
+
+    callback start(bool);
+    in property frame <=> img.source;
+
+    TouchArea {
+        double-clicked => {
+            root.controls_visible = !root.controls_visible
+        }
+    }
+
+    img := Image {
+        x: 0;
+        y: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    btn := Button {
+        x: 15px;
+        y: 15px;
+        text: launched ? "Stop" : "Start";
+        visible: controls_visible;
+
+        clicked => {
+            start(!launched);
+            root.launched = !root.launched;
+        }
+    }
+
+    if !root.launched: Text {
+        color: white;
+        text: "Double click for show/hide controls";
+    }
+}

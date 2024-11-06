@@ -1,0 +1,23 @@
+[package]
+name = "screencast"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[dependencies]
+gbm = { version = "0.16", features = ["drm-support"] }
+drm = "0.14"
+dbus = "0.9"
+pipewire = { version = "0.8", features = ["v0_3_77"] }
+clap = { version = "4", features = ["derive"] }
+slint = "1.8"
+async-channel = "2.3"
+portal-screencast = "0.1.0"
+khronos-egl = { version = "6", features = ["static"] }
+gl = "0.14"
+gl_loader = "0.1"
+gbm-sys = "0.3.1"
+passfd = "0.1"
+
+[build-dependencies]
+slint-build = "1.8.0"
